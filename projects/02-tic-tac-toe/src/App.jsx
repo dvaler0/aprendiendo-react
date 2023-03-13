@@ -1,21 +1,20 @@
-import { useState } from "react"
-import confetti from "canvas-confetti"
-import { Square } from "./components/Square"
-import { TURNS, WINNER_COMBOS } from "./constants"
-import { checkWinnerFrom, checkEndGame } from "./logic/board"
-import { WinnerModal } from "./components/WinnerModal"
-import { saveGameToStorage, resetGameStorage } from "./logic/storage"
+import { useState } from 'react'
+import confetti from 'canvas-confetti'
+import { Square } from './components/Square'
+import { TURNS } from './constants'
+import { checkWinnerFrom, checkEndGame } from './logic/board'
+import { WinnerModal } from './components/WinnerModal'
+import { saveGameToStorage, resetGameStorage } from './logic/storage'
 
-function App() {
+function App () {
   const [board, setBoard] = useState(() => {
     const boardFromStorage = window.localStorage.getItem('board')
     return boardFromStorage ? JSON.parse(boardFromStorage) : Array(9).fill(null)
   })
-  const [turn, setTurn] = useState(()=>{
+  const [turn, setTurn] = useState(() => {
     const turnFromStorage = window.localStorage.getItem('turn')
-    return turnFromStorage ?? TURNS.X  
+    return turnFromStorage ?? TURNS.X
   })
-
 
   // null es que hay ganador, false es que hay empate
   const [winner, setWinner] = useState(null)
@@ -31,10 +30,10 @@ function App() {
   const updateBoard = (index) => {
     // no actualizamos esta posición si ya tiene algo
     // o hay un ganador
-    if(board[index] || winner) return
+    if (board[index] || winner) return
     // actualizar el tablero
-    const newBoard = [... board]
-    newBoard[index] = turn  
+    const newBoard = [...board]
+    newBoard[index] = turn
     setBoard(newBoard)
     // cambiar el turno
     const newTurn = turn === TURNS.X ? TURNS.O : TURNS.X
@@ -49,14 +48,14 @@ function App() {
     window.localStorage.setItem('turn', newTurn)
     // revisar si hay ganador
     const newWinner = checkWinnerFrom(newBoard)
-    if (newWinner){
+    if (newWinner) {
       confetti()
       setWinner(newWinner)
     } else if (checkEndGame(newBoard)) {
       setWinner(false) // empate
     }
   }
-  
+
   return (
     <main className='board'>
       <h1>Tic tac toe</h1>
@@ -77,7 +76,7 @@ function App() {
         }
       </section>
 
-      <section className="turn">
+      <section className='turn'>
         <Square isSelected={turn === TURNS.X}>
           {TURNS.X}
         </Square>
