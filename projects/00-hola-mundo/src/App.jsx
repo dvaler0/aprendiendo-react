@@ -1,5 +1,5 @@
-import { TwitterFollowCard } from "./TwitterFollowCard";
-import { TwitterTrendingTopicCard } from "./TwitterTrendingTopicCard";
+import { TwitterFollowCard } from './TwitterFollowCard'
+import { TwitterTrendingTopicCard } from './TwitterTrendingTopicCard'
 
 const users = [
   {
@@ -25,26 +25,26 @@ const trendingTopics = [
 export function App () {
   return (
     <>
-      <section className="App">
+      <section className='App'>
         What's happening
         {
           trendingTopics.map(({ trendingTopicName, trendingTopicCategory, trendingTopicTweets }) => {
             return (
-              <TwitterTrendingTopicCard 
+              <TwitterTrendingTopicCard
                 key={trendingTopicName}
                 trendingTopicName={trendingTopicName}
                 trendingTopicCategory={trendingTopicCategory}
                 trendingTopicTweets={trendingTopicTweets}
               />
-            )   
+            )
           })
         }
         {
           users.map(({ userName, name, isFollowing }) => {
             return (
-              <TwitterFollowCard 
+              <TwitterFollowCard
                 key={userName}
-                userName={userName} 
+                userName={userName}
                 initialIsFollowing={isFollowing}
               >
                 {name}
@@ -52,7 +52,7 @@ export function App () {
             )
           })
         }
-        </section>  
+      </section>
     </>
   )
 }

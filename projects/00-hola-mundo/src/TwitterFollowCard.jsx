@@ -1,11 +1,11 @@
-import { useState } from "react"
+import { useState } from 'react'
 
-export function TwitterFollowCard ({ children, userName, initialIsFollowing}) {
+export function TwitterFollowCard ({ children, userName, initialIsFollowing }) {
   const [isFollowing, setIsFollowing] = useState(initialIsFollowing)
 
   const text = isFollowing ? 'Siguiendo' : 'Seguir'
-  const buttonClassName = isFollowing 
-    ? 'tw-followCard-button is-following' 
+  const buttonClassName = isFollowing
+    ? 'tw-followCard-button is-following'
     : 'tw-followCard-button'
 
   const handleClick = () => {
@@ -14,10 +14,10 @@ export function TwitterFollowCard ({ children, userName, initialIsFollowing}) {
   return (
     <article className='tw-followCard'>
       <header className='tw-followCard-header'>
-        <img 
+        <img
           className='tw-followCard-avatar'
-          src={`https://unavatar.io/${userName}` }
-          alt="El avatar de midudev" 
+          src={`https://unavatar.io/${userName}`}
+          alt='El avatar de midudev'
         />
         <div className='tw-followCard-info'>
           <strong>{children}</strong>
